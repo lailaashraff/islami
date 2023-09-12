@@ -8,6 +8,7 @@ class MyTheme {
     scaffoldBackgroundColor: Colors.transparent,
     primaryColor: primaryColor,
     appBarTheme: AppBarTheme(
+      iconTheme: IconThemeData(color: blackColor),
       backgroundColor: Colors.transparent,
       elevation: 0,
       centerTitle: true,
