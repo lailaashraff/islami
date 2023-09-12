@@ -5,8 +5,44 @@ class RadioTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.pink,
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        Image.asset('assets/images/radio.png'),
+        Text(
+          'Quran Radio',
+          style: Theme.of(context).textTheme.titleMedium,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            IconButton(
+              onPressed: () {},
+              icon: Icon(
+                Icons.skip_previous_sharp,
+                color: Theme.of(context).primaryColor,
+                size: 40,
+              ),
+            ),
+            IconButton(
+              onPressed: () {},
+              icon: Icon(
+                Icons.play_arrow_sharp,
+                color: Theme.of(context).primaryColor,
+                size: 40,
+              ),
+            ),
+            IconButton(
+              onPressed: () {},
+              icon: Icon(
+                Icons.skip_next_sharp,
+                color: Theme.of(context).primaryColor,
+                size: 40,
+              ),
+            ),
+          ],
+        )
+      ],
     );
   }
 }
