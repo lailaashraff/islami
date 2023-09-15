@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:islami_app/my_theme.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SebhaTab extends StatefulWidget {
   @override
@@ -57,7 +58,7 @@ class _SebhaTabState extends State<SebhaTab> {
           ),
         ),
         Text(
-          'Tasbeeh Count',
+          AppLocalizations.of(context)!.tasbehCount,
           style: Theme.of(context).textTheme.titleMedium,
         ),
         Container(

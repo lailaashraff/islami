@@ -3,6 +3,8 @@ import 'package:islami_app/home/hadeth/hadeth_tab.dart';
 import 'package:islami_app/home/quran/quran_tab.dart';
 import 'package:islami_app/home/radio/radio_tab.dart';
 import 'package:islami_app/home/sebha/sebha_tab.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:islami_app/home/settings/settings_tab.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String routeName = 'home-screen';
@@ -26,8 +28,8 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         Scaffold(
             appBar: AppBar(
-              title:
-                  Text('Islami', style: Theme.of(context).textTheme.titleLarge),
+              title: Text(AppLocalizations.of(context)!.app_title,
+                  style: Theme.of(context).textTheme.titleLarge),
             ),
             bottomNavigationBar: Theme(
               data: Theme.of(context)
@@ -43,22 +45,25 @@ class _HomeScreenState extends State<HomeScreen> {
                       icon: ImageIcon(
                         AssetImage('assets/images/icon_moshaf.png'),
                       ),
-                      label: 'Quran'),
+                      label: AppLocalizations.of(context)!.quran),
                   BottomNavigationBarItem(
                       icon: ImageIcon(
                         AssetImage('assets/images/icon_hadeth.png'),
                       ),
-                      label: 'Hadeth'),
+                      label: AppLocalizations.of(context)!.hadith),
                   BottomNavigationBarItem(
                       icon: ImageIcon(
                         AssetImage('assets/images/icon_sebha.png'),
                       ),
-                      label: 'Sebha'),
+                      label: AppLocalizations.of(context)!.sebha),
                   BottomNavigationBarItem(
                       icon: ImageIcon(
                         AssetImage('assets/images/icon_radio.png'),
                       ),
-                      label: 'Radio'),
+                      label: AppLocalizations.of(context)!.radio),
+                  BottomNavigationBarItem(
+                      icon: Icon(Icons.settings),
+                      label: AppLocalizations.of(context)!.settings)
                 ],
               ),
             ),
@@ -72,5 +77,6 @@ class _HomeScreenState extends State<HomeScreen> {
     HadethTab(),
     SebhaTab(),
     RadioTab(),
+    SettingsTab(),
   ];
 }
