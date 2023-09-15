@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
+
+import '../../my_theme.dart';
+import '../../provider/app_config_provider.dart';
 
 class RadioTab extends StatelessWidget {
   const RadioTab({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<AppConfigProvider>(context);
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
@@ -21,7 +27,9 @@ class RadioTab extends StatelessWidget {
               onPressed: () {},
               icon: Icon(
                 Icons.skip_previous_sharp,
-                color: Theme.of(context).primaryColor,
+                color: provider.isDarkMode()
+                    ? MyTheme.yellowColor
+                    : Theme.of(context).primaryColor,
                 size: 40,
               ),
             ),
@@ -29,7 +37,9 @@ class RadioTab extends StatelessWidget {
               onPressed: () {},
               icon: Icon(
                 Icons.play_arrow_sharp,
-                color: Theme.of(context).primaryColor,
+                color: provider.isDarkMode()
+                    ? MyTheme.yellowColor
+                    : Theme.of(context).primaryColor,
                 size: 40,
               ),
             ),
@@ -37,7 +47,9 @@ class RadioTab extends StatelessWidget {
               onPressed: () {},
               icon: Icon(
                 Icons.skip_next_sharp,
-                color: Theme.of(context).primaryColor,
+                color: provider.isDarkMode()
+                    ? MyTheme.yellowColor
+                    : Theme.of(context).primaryColor,
                 size: 40,
               ),
             ),

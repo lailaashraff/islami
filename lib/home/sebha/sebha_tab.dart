@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:islami_app/my_theme.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
+
+import '../../provider/app_config_provider.dart';
 
 class SebhaTab extends StatefulWidget {
   @override
@@ -21,6 +24,8 @@ class _SebhaTabState extends State<SebhaTab> {
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<AppConfigProvider>(context);
+
     return Column(
       children: [
         Center(
@@ -31,7 +36,9 @@ class _SebhaTabState extends State<SebhaTab> {
                   left: MediaQuery.of(context).size.width * 0.09,
                 ),
                 child: Center(
-                  child: Image.asset('assets/images/sebha_head.png'),
+                  child: provider.isDarkMode()
+                      ? Image.asset('assets/images/sebha_head_dark.png')
+                      : Image.asset('assets/images/sebha_head.png'),
                 ),
               ),
               Center(
@@ -50,7 +57,9 @@ class _SebhaTabState extends State<SebhaTab> {
                         angle: rotationAngle *
                             (3.14159265359 /
                                 180), // Convert degrees to radians,
-                        child: Image.asset('assets/images/sebha.png')),
+                        child: provider.isDarkMode()
+                            ? Image.asset('assets/images/sebha_dark.png')
+                            : Image.asset('assets/images/sebha.png')),
                   ),
                 ),
               ),
@@ -67,7 +76,9 @@ class _SebhaTabState extends State<SebhaTab> {
           width: MyTheme.counterWidth,
           height: MyTheme.counterHeight,
           decoration: BoxDecoration(
-              color: MyTheme.primaryColor.withOpacity(0.57),
+              color: provider.isDarkMode()
+                  ? MyTheme.primaryDark.withOpacity(0.8)
+                  : MyTheme.primaryColor.withOpacity(0.57),
               borderRadius: BorderRadius.circular(25)),
           child: Center(
             child: Text(
@@ -84,15 +95,16 @@ class _SebhaTabState extends State<SebhaTab> {
               top: MediaQuery.of(context).size.height * 0.025,
             ),
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(25),
-              color: Theme.of(context).primaryColor,
-            ),
+                borderRadius: BorderRadius.circular(25),
+                color: provider.isDarkMode()
+                    ? MyTheme.yellowColor
+                    : Theme.of(context).primaryColor),
             child: Center(
               child: Text(
                 tasbeh[ListIndex],
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  color: MyTheme.whiteColor,
+                  color: MyTheme.blackColor,
                 ),
               ),
             ),

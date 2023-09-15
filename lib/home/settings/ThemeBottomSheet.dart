@@ -5,12 +5,12 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../my_theme.dart';
 
-class LanguageBottomSheet extends StatefulWidget {
+class ThemeBottomSheet extends StatefulWidget {
   @override
-  State<LanguageBottomSheet> createState() => _LanguageBottomSheetState();
+  State<ThemeBottomSheet> createState() => _ThemeBottomSheetState();
 }
 
-class _LanguageBottomSheetState extends State<LanguageBottomSheet> {
+class _ThemeBottomSheetState extends State<ThemeBottomSheet> {
   @override
   Widget build(BuildContext context) {
     var provider = Provider.of<AppConfigProvider>(context);
@@ -18,19 +18,20 @@ class _LanguageBottomSheetState extends State<LanguageBottomSheet> {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         InkWell(
-            onTap: () {
-              provider.changeLanguage('en');
-            },
-            child: provider.appLanguage == 'en'
-                ? getSelectedItem(AppLocalizations.of(context)!.english)
-                : getUnselectedItem(AppLocalizations.of(context)!.english)),
+          onTap: () {
+            provider.changeTheme(ThemeMode.dark);
+          },
+          child: provider.isDarkMode()
+              ? getSelectedItem(AppLocalizations.of(context)!.darkMode)
+              : getUnselectedItem(AppLocalizations.of(context)!.darkMode),
+        ),
         InkWell(
             onTap: () {
-              provider.changeLanguage('ar');
+              provider.changeTheme(ThemeMode.light);
             },
-            child: provider.appLanguage == 'ar'
-                ? getSelectedItem(AppLocalizations.of(context)!.arabic)
-                : getUnselectedItem(AppLocalizations.of(context)!.arabic)),
+            child: provider.isDarkMode()
+                ? getUnselectedItem(AppLocalizations.of(context)!.lightMode)
+                : getSelectedItem(AppLocalizations.of(context)!.lightMode)),
       ],
     );
   }
@@ -50,11 +51,13 @@ class _LanguageBottomSheetState extends State<LanguageBottomSheet> {
                     ? MyTheme.yellowColor
                     : Theme.of(context).primaryColor),
           ),
-          Icon(Icons.check,
-              size: 25,
-              color: provider.isDarkMode()
-                  ? MyTheme.yellowColor
-                  : Theme.of(context).primaryColor),
+          Icon(
+            Icons.check,
+            size: 25,
+            color: provider.isDarkMode()
+                ? MyTheme.yellowColor
+                : Theme.of(context).primaryColor,
+          )
         ],
       ),
     );

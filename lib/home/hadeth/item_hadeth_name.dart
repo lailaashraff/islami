@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:islami_app/home/quran/sura_details_screen.dart';
 
+import '../../my_theme.dart';
 import 'hadeth_details_screen.dart';
 import 'hadeth_tab.dart';
 
@@ -21,7 +22,10 @@ class ItemHadethName extends StatelessWidget {
       child: Text(
         hadeth.title,
         textAlign: TextAlign.center,
-        style: TextStyle(fontSize: 22, fontWeight: FontWeight.w400),
+        style: Theme.of(context)
+            .textTheme
+            .titleMedium!
+            .copyWith(color: MyTheme.whiteColor),
       ),
     );
   }
