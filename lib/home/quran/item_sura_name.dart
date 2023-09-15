@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:islami_app/home/quran/sura_details_screen.dart';
+import 'package:islami_app/my_theme.dart';
 
 class ItemSuraName extends StatelessWidget {
   String name;
@@ -19,7 +20,10 @@ class ItemSuraName extends StatelessWidget {
       child: Text(
         name,
         textAlign: TextAlign.center,
-        style: TextStyle(fontSize: 22, fontWeight: FontWeight.w400),
+        style: Theme.of(context)
+            .textTheme
+            .titleMedium!
+            .copyWith(color: MyTheme.whiteColor),
       ),
     );
   }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../my_theme.dart';
+
 class ItemHadethDetails extends StatelessWidget {
   String content;
 
@@ -10,7 +12,10 @@ class ItemHadethDetails extends StatelessWidget {
     return Text(
       '${content}',
       textAlign: TextAlign.center,
-      style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
+      style: Theme.of(context)
+          .textTheme
+          .titleMedium!
+          .copyWith(color: MyTheme.yellowColor),
     );
   }
 }

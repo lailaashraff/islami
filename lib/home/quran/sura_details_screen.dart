@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:islami_app/home/quran/item_sura_details.dart';
 import 'package:islami_app/my_theme.dart';
+import 'package:provider/provider.dart';
+
+import '../../provider/app_config_provider.dart';
 
 class SuraDetailsScreen extends StatefulWidget {
   static const String routeName = 'sura-details-screen';
@@ -15,18 +18,27 @@ class _SuraDetailsScreenState extends State<SuraDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<AppConfigProvider>(context);
+
     var args = ModalRoute.of(context)?.settings.arguments as SuraDetailsArgs;
     if (verses.isEmpty) {
       loadFile(args.index);
     }
 
     return Stack(children: [
-      Image.asset(
-        'assets/images/main_background.png',
-        width: double.infinity,
-        height: double.infinity,
-        fit: BoxFit.fill,
-      ),
+      provider.isDarkMode()
+          ? Image.asset(
+              'assets/images/main_background_dark.png',
+              width: double.infinity,
+              height: double.infinity,
+              fit: BoxFit.fill,
+            )
+          : Image.asset(
+              'assets/images/main_background.png',
+              width: double.infinity,
+              height: double.infinity,
+              fit: BoxFit.fill,
+            ),
       Scaffold(
         appBar: AppBar(
           title: Text(
@@ -41,7 +53,9 @@ class _SuraDetailsScreenState extends State<SuraDetailsScreen> {
               ))
             : Container(
                 decoration: BoxDecoration(
-                  color: MyTheme.whiteColor,
+                  color: provider.isDarkMode()
+                      ? MyTheme.primaryDark
+                      : MyTheme.primaryColor,
                   borderRadius: BorderRadius.circular(24),
                 ),
                 margin: EdgeInsets.symmetric(
@@ -50,7 +64,9 @@ class _SuraDetailsScreenState extends State<SuraDetailsScreen> {
                 child: ListView.separated(
                   separatorBuilder: (context, index) {
                     return Divider(
-                      color: Theme.of(context).primaryColor,
+                      color: provider.isDarkMode()
+                          ? MyTheme.yellowColor
+                          : MyTheme.primaryColor,
                       thickness: 3,
                     );
                   },

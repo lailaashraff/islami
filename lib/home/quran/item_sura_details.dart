@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:islami_app/my_theme.dart';
 
 class ItemSuraDetails extends StatelessWidget {
   String content;
@@ -12,7 +13,10 @@ class ItemSuraDetails extends StatelessWidget {
       '${content} (${index + 1}) ',
       textAlign: TextAlign.center,
       textDirection: TextDirection.rtl,
-      style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
+      style: Theme.of(context)
+          .textTheme
+          .titleMedium!
+          .copyWith(color: MyTheme.yellowColor),
     );
   }
 }
